@@ -138,7 +138,7 @@ def scrape_urls_stream():
             process.wait()
 
             if process.returncode == 0:
-                yield f"data: DONE:{output_file}\n\n"
+                yield f"data: [COMPLETED] {output_file}\n\n"
             else:
                 yield f"data: ERROR:Scraper exited with code {process.returncode}\n\n"
 
