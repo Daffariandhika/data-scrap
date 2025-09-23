@@ -29,3 +29,12 @@ export {
 export {
   default as DownloadIcon
 } from "./DownloadIcon";
+
+export {
+  default as FormHeader
+} from "./FormHeader";
+
+export {
+  default as UsageContent
+} from "./UsageContent";
+

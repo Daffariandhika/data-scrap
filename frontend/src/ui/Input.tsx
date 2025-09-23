@@ -15,7 +15,9 @@ export default function Input<T extends string | number>({
 }: InputProps<T>) {
   return (
     <div className="input-group">
-      <label>{label}</label>
+      <label>
+        {label}
+      </label>
       <input
         type={type}
         value={value}

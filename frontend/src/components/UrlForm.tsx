@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Button, Input, Loader, LogViewer } from "../ui";
+import { Button, FormHeader, Input, Loader, LogViewer, Modal } from "../ui";
 import useScraperUrl from "../hooks/useScraperUrl";
+import UsageContent from './../ui/UsageContent';
 
 export default function UrlForm({ onSuccess }: { onSuccess: (file: string) => void }) {
 
@@ -9,6 +10,7 @@ export default function UrlForm({ onSuccess }: { onSuccess: (file: string) => vo
   const [delay, setDelay] = useState(3);
   const [output, setOutput] = useState("list");
   const [showLogs, setShowLogs] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   const params = new URLSearchParams({
     url,
@@ -32,13 +34,11 @@ export default function UrlForm({ onSuccess }: { onSuccess: (file: string) => vo
 
   return (
     <div className="form-container">
-      <h2 className="form-header">
-        Scrap URL
-      </h2>
-      <form
-        className="form"
-        onSubmit={handleSubmit}
-      >
+      <FormHeader
+        heading="Scrap Urls"
+        subheading="Collect Each Book Url From Provided Url"
+        onClick={() => setShowInfo(true)} />
+      <form onSubmit={handleSubmit}>
         <Input<string>
           label="URL"
           value={url}
@@ -65,44 +65,61 @@ export default function UrlForm({ onSuccess }: { onSuccess: (file: string) => vo
           onChange={setOutput}
           placeholder="Python File Output Name"
         />
-        <div className="Flex_Wrap">
-          <Button
-            variant="default"
-            type="submit"
-            disabled={loading}
-          >
-            {
-              loading ?
-                <Loader
-                  text={
-                    ["Scraping...",
-                      "Almost there...",
-                      "Just a moment..."
-                    ]}
-                  color="Textwhite" /> : "Start"
-            }
-          </Button>
-          {
-            logs.length > 0 &&
+        <div className="Button_Wrap_Col">
+          <div className="Flex_Wrap">
             <Button
               variant="default"
-              onClick={() => setShowLogs(true)}
+              type="submit"
+              disabled={loading || !url}
             >
-              Logs
+              {
+                loading ?
+                  <Loader
+                    text={
+                      ["Scraping...",
+                        "Almost there...",
+                        "Just a moment..."
+                      ]}
+                    color="Textwhite" /> : "Start"
+              }
+            </Button>
+            {
+              logs.length > 0 &&
+              <Button
+                variant="default"
+                onClick={() => setShowLogs(true)}
+              >
+                Logs
+              </Button>
+            }
+          </div>
+          {
+            downloadFile &&
+            <Button
+              variant="py"
+              downloadFile={downloadFile}
+              disabled={!downloadFile}
+            >
+              Python File
             </Button>
           }
         </div>
-        {
-          downloadFile &&
-          <Button
-            variant="py"
-            downloadFile={downloadFile}
-            disabled={!downloadFile}
-          >
-            Python File
-          </Button>
-        }
       </form>
+      <Modal
+        title="Usage Guide"
+        subtitle="Guidance to use this form"
+        isOpen={showInfo}
+        onClose={() => setShowInfo(false)}
+      >
+        <UsageContent
+          heading="Parameter"
+          lists={[
+            "URL : Enter a Goodreads search, list, or shelf link",
+            "Amount : Number of URLs to scrape (keep reasonable)",
+            "Delay : Seconds between requests (higher = safer)",
+            "Output : Name of the file to save results",
+          ]} />
+      </Modal>
       <LogViewer
         logs={logs}
         isOpen={showLogs}

@@ -1,0 +1,41 @@
+.loading-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-left: 3px;
+  margin-bottom: 2px;
+}
+
+.starting {
+  padding: 2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.Textblack {
+  --gradient-color-shine: linear-gradient(to right, #222 0%, white 10%, #222 20%);
+}
+
+.Textwhite {
+  --gradient-color-shine: linear-gradient(to right, #ccc 0%, #000 10%, #ccc 20%);
+}
+
+.shine-text {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--gradient-color-shine);
+  background-size: 200% auto;
+  background-position: 0 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineText 9s infinite linear;
+  animation-fill-mode: forwards;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.2rem;
+}

@@ -1,18 +1,15 @@
 import { useState } from 'react';
-import UrlForm from './components/UrlForm';
-import MetadataForm from './components/MetadataForm';
+import { UrlForm, MetadataForm, Agreement } from './components';
 
 function App() {
   const [urlOutputFile, setUrlOutputFile] = useState<string | null>(null);
 
   return (
     <main>
-            <div className="forms-container">
-      <UrlForm onSuccess={setUrlOutputFile} />
-      {
-        urlOutputFile &&
-        <MetadataForm inputFile={urlOutputFile} />
-      }
+      <div className="page-container">
+        <UrlForm onSuccess={setUrlOutputFile} />
+        <MetadataForm inputFile={urlOutputFile || "list"} />
+        <Agreement />
       </div>
     </main>
   );

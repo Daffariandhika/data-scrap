@@ -5,6 +5,7 @@ interface ModalProps {
   subtitle: string;
   isOpen: boolean;
   onClose: () => void;
+  hideClose?: boolean;
   children: React.ReactNode;
 }
 
@@ -13,6 +14,7 @@ export default function Modal({
   subtitle,
   isOpen,
   onClose,
+  hideClose = false,
   children
 }: ModalProps) {
 
@@ -29,22 +31,25 @@ export default function Modal({
       >
         <div className="modal-header">
           <div className="Flex_Column">
-          <h3>
-            {title}
-          </h3>
-          <p>
-            {subtitle}
+            <h3>
+              {title}
+            </h3>
+            <p>
+              {subtitle}
             </p>
-            </div>
-              <button
-                className="close-btn"
-                onClick={onClose}
-              >
-                ✖
-              </button>
-            </div>
-            {children}
+          </div>
+          {
+            !hideClose &&
+            <button
+              className="close-btn"
+              onClick={onClose}
+            >
+              ✖
+            </button>
+          }
         </div>
+        {children}
       </div>
-      );
+    </div>
+  );
 };

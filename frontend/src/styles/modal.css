@@ -1,0 +1,131 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal {
+  width: 92%;
+  max-width: 860px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(17, 17, 17, 0.95);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  animation: slideUp 0.35s ease;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  background: linear-gradient(90deg, #111, #181818);
+  padding: 1rem 1.2rem;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  p {
+    font-size: 12px;
+    font-style: italic;
+    margin-top: -6px;
+    color: #666;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 22px;
+    cursor: pointer;
+    transition: color 0.1s ease, transform 0.15s ease;
+  }
+
+  button:hover {
+    color: #ff5555;
+    transform: scale(1.2);
+  }
+}
+
+.modal-content {
+  background: transparent;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.6rem 0.8rem;
+  flex: 1;
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #e5e7eb;
+
+  pre {
+    margin: 0 0 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    text-align: left;
+    opacity: 0.95;
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.2s;
+    overflow: hidden;
+  }
+
+  pre:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  pre.success {
+    color: #38bdf8;
+  }
+
+  pre.error {
+    color: #f87171;
+  }
+
+  pre.info {
+    color: #60a5fa;
+  }
+
+  pre.config {
+    color: #9ca3af;
+  }
+
+  pre.warning {
+    color: #fbbf24;
+  }
+
+  pre.completed {
+    color: #4ade80;
+  }
+}
+
+.error-state {
+  color: #f87171;
+  font-weight: 500;
+  text-align: left;
+  padding: 6px 10px;
+  border-left: 3px solid #f87171;
+  background: rgba(248, 113, 113, 0.1);
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.log-entry {
+  opacity: 0;
+  transform: translateY(5px);
+  animation: logFadeUp 0.25s forwards;
+}
+
+.usage-content h3 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}

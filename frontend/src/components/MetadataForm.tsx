@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Button, Input, Loader, LogViewer } from "../ui";
+import { Button, FormHeader, Input, Loader, LogViewer, Modal, UsageContent } from "../ui";
 import useScraperMetadata from '../hooks/useScraperMetadata';
 
 export default function MetadataForm({ inputFile }: { inputFile: string }) {
 
   const [output, setOutput] = useState('metadata');
   const [showLogs, setShowLogs] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   const {
     logs,
@@ -21,61 +22,82 @@ export default function MetadataForm({ inputFile }: { inputFile: string }) {
 
   return (
     <div className="form-container">
-      <h2 className="form-header">
-        Metadata
-      </h2>
-      <form className="form">
+      <FormHeader
+        heading="Scrap Metadata"
+        subheading="Collect each book metadata"
+        onClick={() => setShowInfo(true)}
+      />
+      <form>
         <Input<string>
-          label="URL"
+          label="Output File Name"
           value={output}
           onChange={setOutput}
         />
-        <div className='Flex_Wrap'>
-          <Button
-            variant="default"
-            onClick={handleScrape}
-            disabled={loading}
-          >
-            {
-              loading ?
-                <Loader
-                  text={[
-                    "Scraping...",
-                    "Almost Done...",
-                    "A bit more..."
-                  ]}
-                  color="Textwhite" /> : "Start"
-            }
-          </Button>
-          {
-            logs.length > 0 &&
+        <div className="Button_Wrap_Col">
+          <div className="Flex_Wrap">
             <Button
               variant="default"
-              onClick={() => setShowLogs(true)}
+              onClick={handleScrape}
+              disabled={loading || !inputFile}
             >
-              Logs
+              {
+                loading ?
+                  <Loader
+                    text={[
+                      "Scraping...",
+                      "Almost Done...",
+                      "A bit more..."
+                    ]}
+                    color="Textwhite" /> : "Start"
+              }
+            </Button>
+            {
+              logs.length > 0 &&
+              <Button
+                variant="default"
+                onClick={() => setShowLogs(true)}
+              >
+                Logs
+              </Button>
+            }
+          </div>
+          {
+            files &&
+            <Button
+              variant="json"
+              downloadFile={files.json}
+              disabled={!inputFile}
+            >
+              JSON File
             </Button>
           }
+          {
+            files &&
+            <Button
+              variant="csv"
+              downloadFile={files.csv}
+              disabled={!inputFile}
+            >
+              CSV File
+            </Button>
+
+          }
         </div>
-        {
-          files && (
-            <>
-              <Button
-                variant="json"
-                downloadFile={files.json}
-              >
-                JSON File
-              </Button>
-              <Button
-                variant="csv"
-                downloadFile={files.csv}
-              >
-                CSV File
-              </Button>
-            </>
-          )
-        }
       </form>
+      <Modal
+        title="Usage Guide"
+        subtitle="Guidance to use this form"
+        isOpen={showInfo}
+        onClose={() => setShowInfo(false)}
+      >
+        <UsageContent
+          heading="Parameter"
+          lists={[
+            "Input : Automaticly use the .Py file from previous form",
+            "Output : Output file name",
+          ]}
+        />
+      </Modal>
       <LogViewer
         logs={logs}
         isOpen={showLogs}

@@ -1,0 +1,80 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.02rem;
+  width: 100%;
+
+/*---Input Label---*/
+  label {
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: #aaa;
+    font-size: 0.95rem;
+    text-align: left;
+  }
+
+/*---Input Field---*/
+  input {
+    padding: 0.8rem;
+    border-radius: 12px;
+    border: none;
+    background: #0d0d0df2;
+    color: #999;
+    font-size: 1.2rem;
+    font-variant: small-caps;
+    transition: all 0.3s ease;
+    outline: none;
+    line-height: 1.4;
+    box-shadow:
+      rgb(0, 0, 0) 3px 3px 6px 0px inset,
+      rgba(0, 0, 0, 0.5) -3px -3px 6px 1px inset;
+  }
+
+  input:hover {
+    background: #0c0c0ce6;
+    box-shadow:
+      rgb(0, 0, 0) 2px 2px 6px 0px inset,
+      rgba(0, 0, 0, 0.6) -2px -2px 6px 1px inset;
+  }
+
+  input:focus {
+    background: rgba(6, 6, 6, 0.8);
+    color: #999;
+    box-shadow:
+      rgb(0, 0, 0) 4px 4px 8px 0px inset,
+      rgba(0, 0, 0, 0.6) -4px -4px 8px 1px inset;
+    transform: translate(1px, 1px);
+  }
+
+/*---Input Placeholder---*/
+  input::placeholder {
+    color: #151515;
+    transition: color 0.2s ease;
+  }
+
+  input:hover::placeholder {
+    color: #181818;
+  }
+
+  input:focus::placeholder {
+    color: #151515;
+  }
+
+/*---Number Input Control---*/
+  input[type="number"] {
+    width: auto;
+  }
+
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+    appearance: text;
+  }
+
+}
