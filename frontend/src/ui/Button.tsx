@@ -43,6 +43,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const shouldShowIcon = showIcon ?? Boolean(downloadFile);
 
+
   return (
     <button
       type={type}
@@ -58,7 +59,7 @@ const Button: React.FC<ButtonProps> = ({
       {downloadFile ? (
         <a
           className="front"
-          href={disabled ? undefined : `/api/download/${downloadFile}`}
+          href={disabled ? undefined : `api/download/${downloadFile}`}
           download={!disabled}
           aria-disabled={disabled}
           onClick={disabled ? (e) => e.preventDefault() : undefined}

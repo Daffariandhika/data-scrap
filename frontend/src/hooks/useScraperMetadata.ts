@@ -24,7 +24,7 @@ export default function useScraperMetadata(
     );
 
     const evtSource = new EventSource(
-      `/api/scrape_books_stream?${params}`
+      `api/scrape_books_stream?${params}`
     );
 
     evtSource.onmessage = (event) => {

@@ -11,9 +11,8 @@ export default function useScraperURL(
 
   useEffect(() => {
     if (!loading) return;
-
     const evtSource = new EventSource(
-      `/api/scrape_urls_stream?${params}`
+      `api/scrape_urls_stream?${params}`
     );
 
     evtSource.onmessage = (event) => {

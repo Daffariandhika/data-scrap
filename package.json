@@ -1,0 +1,25 @@
+{
+  "name": "goodreads-scraper-root",
+  "author": "Daffa Riandhika",
+  "license": "MIT",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "setup": "npm run setup:backend && npm run setup:frontend",
+    "setup:backend": "cd backend && pip install -r requirements.txt",
+    "setup:frontend": "cd frontend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && python app.py",
+    "dev:frontend": "cd frontend && npm run dev",
+    "lint": "npm run lint:frontend",
+    "lint:frontend": "cd frontend && npm run lint",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "clean": "rimraf node_modules frontend/node_modules backend/__pycache__",
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.0.0",
+    "rimraf": "^5.0.5"
+  }
+}

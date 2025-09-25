@@ -1,7 +1,8 @@
 {
-  "name": "goodreads-scraper-app",
+  "name": "goodreads-scraper-frontend",
+  "author": "Daffa Riandhika",
+  "license": "MIT",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
