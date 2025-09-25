@@ -16,6 +16,12 @@
     "build": "npm run build:frontend",
     "build:frontend": "cd frontend && npm run build",
     "clean": "rimraf node_modules frontend/node_modules backend/__pycache__",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "docker:rebuild": "docker-compose up --build",
+    "docker:logs": "docker-compose logs -f",
+    "docker:prune": "docker system prune -f"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",

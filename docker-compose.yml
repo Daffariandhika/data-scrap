@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./backend
+    container_name: scraper-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/output:/app/output
+      - ./backend/scripts:/app/scripts
+
+  frontend:
+    build: ./frontend
+    container_name: scraper-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
